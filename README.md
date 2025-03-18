@@ -46,7 +46,7 @@ uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
 ✅ API Deployment Link:
 
-👉 https://predictive-maintenance-using-machine.onrender.com
+👉https://predictive-maintenance-using-machine-x67e.onrender.com
 
 Now, your API is available at: http://127.0.0.1:8000 (for local testing).
 
