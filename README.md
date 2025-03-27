@@ -78,3 +78,6 @@ Example Response:
 
 (1 = Failure, 0 = No Failure)
 
+## License
+
+[MIT License](LICENSE)
