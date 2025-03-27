@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import os
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -48,6 +51,15 @@ X_test_scaled = scaler.transform(X_test)
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train_scaled, y_train)
 
+# Enable CORS (allow frontend to access backend)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows requests from any origin (replace with domain in production)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Save model & scaler
 joblib.dump(model, "model.pkl")
 joblib.dump(scaler, "scaler.pkl")
@@ -79,10 +91,11 @@ class SensorData(BaseModel):
     sensor_20: float
     sensor_21: float
 
+
 @app.get("/")
 def home():
-    return {"message": "Welcome to Predictive Maintenance API"}
-
+    return FileResponse("index.html")
+    
 @app.post("/predict")
 def predict_failure(data: SensorData):
     input_data = np.array([[getattr(data, f"sensor_{i}") for i in range(1, 22)]])
@@ -96,4 +109,4 @@ if __name__ == "__main__":
     import uvicorn
     import os
     port = int(os.getenv("PORT", 8000))  # Get PORT from Render
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run(app, host="127.0.0.1", port=port)  # Use "127.0.0.1" for local
