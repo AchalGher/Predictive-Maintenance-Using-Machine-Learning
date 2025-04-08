@@ -10,7 +10,7 @@ Features
 
 ✅ Feature Engineering – Uncovering significant features for better predictions.
 
-✅ Machine Learning Models – Employs Random Forest, XGBoost, and Logistic Regression.
+✅ Machine Learning Models – Employs Random Forest, and Logistic Regression.
 
 ✅ Model Evaluation – Evaluates model performance based on accuracy, precision, recall, and F1-score.
 
