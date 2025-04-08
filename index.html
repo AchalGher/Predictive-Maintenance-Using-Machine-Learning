@@ -94,14 +94,12 @@
 <div class="container">
     <h1>Predictive Maintenance API</h1>
 
-    <!-- Project Overview -->
     <div class="section-title">Project Overview</div>
     <p>
         This project predicts equipment failures using machine learning models trained on sensor data. 
         By analyzing patterns in sensor readings, the model can classify whether a failure is likely to occur soon.
     </p>
 
-    <!-- How It Works -->
     <div class="section-title">How It Works</div>
     <p>
         1. The model is trained using a RandomForestClassifier on sensor data.<br>
@@ -109,7 +107,6 @@
         3. The model predicts whether the equipment is likely to fail (1) or not (0) based on sensor values.
     </p>
 
-    <!-- API Usage -->
     <div class="section-title">API Usage</div>
     <p>
         1. Input sensor data through the form below.<br>
@@ -117,7 +114,6 @@
         3. The model returns a prediction result (1 for failure, 0 for no failure).
     </p>
 
-    <!-- Form for Prediction -->
     <div class="section-title">Predict Equipment Failure</div>
     <form id="predictForm">
         <script>
@@ -128,7 +124,6 @@
         <button type="submit">Predict</button>
     </form>
 
-    <!-- Result Display -->
     <div id="result"></div>
 </div>
 
@@ -136,7 +131,6 @@
     document.getElementById("predictForm").addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        // Collect all sensor inputs
         const data = {};
         for (let i = 1; i <= 21; i++) {
             data[`sensor_${i}`] = parseFloat(document.getElementById(`sensor_${i}`).value);

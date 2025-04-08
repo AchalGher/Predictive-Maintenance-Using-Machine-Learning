@@ -2,22 +2,22 @@
 
 ### Overview
 
-This project predicts equipment failures using sensor data, allowing for proactive maintenance scheduling. It leverages machine learning models trained on the NASA CMAPSS dataset to classify whether a machine is at risk of failure.
+This project forecasts equipment failures based on sensor data to enable proactive scheduling of maintenance. It uses machine learning models trained on the NASA CMAPSS dataset to predict whether a machine is likely to fail.
 
 Features
 
-✅ Data Preprocessing – Cleans and prepares sensor data for modeling.
+✅ Data Preprocessing – Prepares and cleans sensor data to model.
 
-✅ Feature Engineering – Extracts meaningful features to improve predictions.
+✅ Feature Engineering – Uncovering significant features for better predictions.
 
-✅ Machine Learning Models – Uses Random Forest, XGBoost, and Logistic Regression.
+✅ Machine Learning Models – Employs Random Forest, XGBoost, and Logistic Regression.
 
-✅ Model Evaluation – Assesses performance using accuracy, precision, recall, and F1-score.
+✅ Model Evaluation – Evaluates model performance based on accuracy, precision, recall, and F1-score.
 
-✅ API Deployment – Deploys the trained model as a FastAPI web service.
+✅ API Deployment – Publishes the trained model as a FastAPI web service.
 
 Dataset
-The dataset used is from NASA's Turbofan Engine Degradation Simulation (CMAPSS) dataset. It contains multiple sensor readings that indicate engine health over time.
+The data used is from NASA's Turbofan Engine Degradation Simulation (CMAPSS) dataset. It has several sensor measurements that reflect engine health over time.
 
 Installation
 

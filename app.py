@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import os
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -13,7 +12,6 @@ import joblib
 
 app = FastAPI()
 
-# Load dataset
 def load_data():
     file_path = "CMAPSSData/train_FD001.txt"
     
@@ -34,37 +32,31 @@ def load_data():
 
 df = load_data()
 
-# Feature selection
 features = [f'sensor_{i}' for i in range(1, 22)]
 X = df[features]
 y = df['failure']
 
-# Split dataset
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Scale data
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# Train model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train_scaled, y_train)
 
-# Enable CORS (allow frontend to access backend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows requests from any origin (replace with domain in production)
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Save model & scaler
 joblib.dump(model, "model.pkl")
 joblib.dump(scaler, "scaler.pkl")
 
-# Load saved model and scaler
+
 model = joblib.load("model.pkl")
 scaler = joblib.load("scaler.pkl")
 
@@ -108,5 +100,5 @@ def predict_failure(data: SensorData):
 if __name__ == "__main__":
     import uvicorn
     import os
-    port = int(os.getenv("PORT", 8000))  # Get PORT from Render
-    uvicorn.run(app, host="127.0.0.1", port=port)  # Use "127.0.0.1" for local
+    port = int(os.getenv("PORT", 8000))  
+    uvicorn.run(app, host="127.0.0.1", port=port)  
